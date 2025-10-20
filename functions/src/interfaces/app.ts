@@ -30,6 +30,7 @@ app.use(express.json());
 
 const userRepo = new FirestoreUserRepository();
 const taskRepo = new FirestoreTaskRepository();
+app.get('/health', (_req, res) => res.json({ ok: true, ts: Date.now() }));
 app.use('/api', buildRouter({ userRepo, taskRepo }));
 
 app.use(errorHandler);
