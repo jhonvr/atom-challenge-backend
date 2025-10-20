@@ -5,5 +5,5 @@ export interface TaskRepository {
   getByTask(taskId: string): Promise<Task>;
   create(data: Omit<Task, 'id'>): Promise<Task>;
   update(taskId: string, patch: Partial<Task>): Promise<void>;
-  delete(taskId: string): Promise<void>;
+  softDelete(taskId: string): Promise<void>;
 }

@@ -7,6 +7,7 @@ export class UpdateTaskUseCase {
       ...(patch.title ? { title: patch.title.trim() } : {}),
       ...(patch.description ? { description: patch.description.trim() } : {}),
       ...(typeof patch.completed === 'boolean' ? { completed: patch.completed } : {}),
+      updatedAt: Date.now()
     };
     return this.repo.update(id, cleaned);
   }

@@ -6,8 +6,8 @@ import { FirestoreUserRepository } from '../infrastructure/repositories/firestor
 import { FirestoreTaskRepository } from '../infrastructure/repositories/firestore-task.repo';
 
 const allowOrigins = [
-  'http://localhost:4200',
-  'http://127.0.0.1:4200'
+  'https://banckend-tasks.web.app/',
+  'http://localhost:4200'
 ];
 
 export const app = express();

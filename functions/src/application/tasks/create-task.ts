@@ -9,6 +9,7 @@ export class CreateTaskUseCase {
       description: (input.description ?? '').trim(),
       createdAt: Date.now(),
       completed: false,
+      deleted: false as const,
     };
     return this.repo.create(payload);
   }

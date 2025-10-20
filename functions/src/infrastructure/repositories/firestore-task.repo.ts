@@ -7,6 +7,7 @@ const TCOL = 'tasks';
 export class FirestoreTaskRepository implements TaskRepository {
   async listByUser(userId: string): Promise<Task[]> {
     const snap = await db.collection(TCOL)
+      .where('deleted', '==', false)
       .where('userId', '==', userId)
       .orderBy('createdAt', 'desc')
       .get();
@@ -24,9 +25,17 @@ export class FirestoreTaskRepository implements TaskRepository {
     return { id: ref.id, ...data };
   }
   async update(taskId: string, patch: Partial<Task>): Promise<void> {
-    await db.collection(TCOL).doc(taskId).update(patch);
+    const toUpdate: Partial<Task> = {
+      updatedAt: Date.now(),
+      ...patch
+    };
+    await db.collection(TCOL).doc(taskId).update(toUpdate);
   }
-  async delete(taskId: string): Promise<void> {
-    await db.collection(TCOL).doc(taskId).delete();
+  async softDelete(taskId: string): Promise<void> {
+    await db.collection(TCOL).doc(taskId).update({
+      updatedAt: Date.now(),
+      deleted: true,
+      deletedAt: Date.now()
+    });
   }
 }

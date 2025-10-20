@@ -14,7 +14,8 @@ export const createTaskSchema = z.object({
 });
 
 export const updateTaskSchema = z.object({
-  title: z.string().trim().min(1).max(120).optional(),
+  id: z.string().min(1),
+  title: z.string().trim().min(1).max(120),
   description: z.string().trim().max(500).optional(),
   completed: z.boolean().optional(),
 });
