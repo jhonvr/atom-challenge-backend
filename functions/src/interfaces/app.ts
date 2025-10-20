@@ -18,7 +18,12 @@ const corsOptions: CorsOptions = {
     if (!origin || allowOrigins.includes(origin)) return cb(null, true);
     return cb(new Error('Not allowed by CORS'));
   },
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Code'
+  ],
+  credentials: false
 };
 app.use(cors(corsOptions));
 app.use(express.json());
