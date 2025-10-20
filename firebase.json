@@ -3,8 +3,5 @@
     "source": "functions",
     "runtime": "nodejs20",
     "platform": "gcfv1"
-  },
-  "firestore": {
-    "rules": "firestore.rules"
   }
 }
